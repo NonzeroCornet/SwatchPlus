@@ -44,10 +44,9 @@ input.addEventListener("keydown", function (event) {
     event.preventDefault();
     var start = this.selectionStart;
     var end = this.selectionEnd;
-    this.value = this.value.substring(0, start) +
-      "    " + this.value.substring(end);
-    this.selectionStart =
-    this.selectionEnd = start + 4;
+    this.value =
+      this.value.substring(0, start) + "    " + this.value.substring(end);
+    this.selectionStart = this.selectionEnd = start + 4;
   }
 });
 
@@ -105,15 +104,19 @@ function run() {
     if (codeFuncs[codeFuncs.length - 1].split("")[i] == "+") {
       smolNum == 9 ? (smolNum = -9) : smolNum++;
     } else if (codeFuncs[codeFuncs.length - 1].split("")[i] == "x") {
-      execute(smolNum);
+      if (smolNum >= 0) {
+        execute(smolNum);
+      } else {
+        i++;
+      }
     } else if (codeFuncs[codeFuncs.length - 1].split("")[i] == "t") {
       bigNum += smolNum;
     } else if (codeFuncs[codeFuncs.length - 1].split("")[i] == "u") {
-      if(bigNum === 13) {
+      if (bigNum === 13) {
         output.innerHTML += "<br>";
-      } else if(bigNum === 32) {
+      } else if (bigNum === 32) {
         output.innerHTML += "&nbsp;";
-      } else if(bigNum === 8) {
+      } else if (bigNum === 8) {
         let tempOut = output.innerHTML.split("");
         tempOut.pop();
         output.innerHTML = tempOut.join("");
