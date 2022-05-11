@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+    <title>Swatch+ - The Online Swatch+ Compiler</title>
+    <link rel="canonical" href="https://runswatch.tk/" />
+    <meta
+      name="description"
+      content="Compile and run Swatch+ online for free, in the worlds most simple Swatch+ compiler online."
+    />
+    <meta name="robots" content="index,follow" />
+    <meta property="og:title" content="Swatch+ - The Online Swatch+ Compiler" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://runswatch.tk/" />
+    <meta
+      property="og:description"
+      content="Compile and run Swatch+ online for free, in the worlds most simple Swatch+ compiler online."
+    />
+    <meta property="og:image" content="/logo.svg" />
+    <script src="/compiler.js" defer></script>
+  </head>
+
+  <body>
+    <center>
+      <div
+        style="
+          position: fixed;
+          z-index: 1;
+          left: 0;
+          right: 0;
+          margin-left: auto;
+          margin-right: auto;
+        "
+      >
+        <p>0:0:0</p>
+        <textarea
+          style="width: 50vw; height: 500px; margin-top: 90px"
+          id="input"
+          onkeyup="updateCode()"
+          spellcheck="false"
+        >
+CODE EDITOR</textarea
+        ><br />
+        <div id="mobileBtnHandler">
+          <button onclick="run()" style="margin-right: 5px">Run</button
+          ><button onclick="toggleHide()" style="margin-left: 5px">
+            ToggleEdit
+          </button>
+        </div>
+        <label for="input" style="color: white">Code Editor</label>
+      </div>
+    </center>
+    <p></p>
+  </body>
+</html>
