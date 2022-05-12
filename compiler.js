@@ -76,15 +76,17 @@ var codes = [];
 var smolNum = 0;
 var inNum = 0;
 var hasPrinted = false;
+var iters = 0;
 
 function run() {
   hasPrinted = false;
   smolNum = 0;
   bigNum = 0;
   inNum = 0;
+  iters = 0;
   functions = [];
   codes = code.split("");
-  for (let i = 0; i < codes.length; i++) {
+  for (let i = 0; iters < codes.length; i++) {
     if (
       codes[i] != "+" &&
       codes[i] != "x" &&
@@ -100,18 +102,18 @@ function run() {
     functions.push(codeFuncs[i].split(""));
   }
   var index = 0;
-  for (var i = 0; i < codeFuncs[codeFuncs.length - 1].length; i++) {
-    if (codeFuncs[codeFuncs.length - 1].split("")[i] == "+") {
+  for (iters = 0; iters < codeFuncs[codeFuncs.length - 1].length; iters++) {
+    if (codeFuncs[codeFuncs.length - 1].split("")[iters] == "+") {
       smolNum == 9 ? (smolNum = -9) : smolNum++;
-    } else if (codeFuncs[codeFuncs.length - 1].split("")[i] == "x") {
+    } else if (codeFuncs[codeFuncs.length - 1].split("")[iters] == "x") {
       if (smolNum >= 0) {
         execute(smolNum);
       } else {
-        i++;
+        iters += smolNum;
       }
-    } else if (codeFuncs[codeFuncs.length - 1].split("")[i] == "t") {
+    } else if (codeFuncs[codeFuncs.length - 1].split("")[iters] == "t") {
       bigNum += smolNum;
-    } else if (codeFuncs[codeFuncs.length - 1].split("")[i] == "u") {
+    } else if (codeFuncs[codeFuncs.length - 1].split("")[iters] == "u") {
       if (bigNum === 13) {
         output.innerHTML += "<br>";
       } else if (bigNum === 32) {
@@ -145,12 +147,16 @@ function execute(functionIndex) {
         "Taking Input... (Will only take in first character)"
       ).charCodeAt(0);
     } else if (functions[functionIndex][i] == "x") {
+      if(bigNum >= 0) {
       execute(bigNum);
       reExecutions++;
       if (reExecutions == 5000) {
         alert("CALL STACK SIZE EXCEEDED! ABORTING!!!");
         reExecutions = 0;
         return;
+      }
+      } else {
+        iters += bigNum;
       }
     }
   }
